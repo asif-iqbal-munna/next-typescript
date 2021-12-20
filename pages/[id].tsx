@@ -32,13 +32,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({ params }: { params: { id: string } }) => {
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
     const post = await res.json()
 
-    // Pass post data to the page via props
+    // Pass post data to the page via props 
     return { props: { post } }
 }
 
